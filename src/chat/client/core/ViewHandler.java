@@ -1,6 +1,6 @@
-package chat.core;
+package chat.client.core;
 
-import chat.views.ViewController;
+import chat.client.views.ViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,18 +14,20 @@ public class ViewHandler {
 
     //specific scenes
     private Scene loginScene;
-
+    private Scene chatScene;
+    private Scene friendListScene;
 
     //open the first scene
     public void start()
     {
+        mainStage = new Stage();
         openLoginScene();
     }
 
     public ViewHandler(ViewModelFactory vmf)
     {
         this.vmf = vmf;
-        mainStage = new Stage();
+
     }
 
     //Add open method for specific scene
@@ -38,12 +40,39 @@ public class ViewHandler {
             e.printStackTrace();
         }
 
-        mainStage.setTitle("Heating Controller");
+        mainStage.setTitle("Login");
         mainStage.setScene(loginScene);
         mainStage.show();
 
     }
+    public void openChatScene()  {
 
+        try {
+            loginScene= getScene("../views/chat/Chat.fxml");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mainStage.setTitle("Chat");
+        mainStage.setScene(loginScene);
+        mainStage.show();
+
+    }
+    public void openFriendListScene()  {
+
+        try {
+            loginScene= getScene("../views/friendlist/FriendList.fxml");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mainStage.setTitle("Friend List");
+        mainStage.setScene(loginScene);
+        mainStage.show();
+
+    }
 //===
 
     private Scene getScene(String path) throws IOException{
