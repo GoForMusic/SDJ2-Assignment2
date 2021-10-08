@@ -18,4 +18,9 @@ public class Message implements Serializable {
     public String getText() {
         return text;
     }
+
+    @Override
+    public String toString() {
+        return userName+": " + text;
+    }
 }

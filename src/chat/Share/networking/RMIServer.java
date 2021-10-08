@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface RMIServer extends Remote {
-    public String message(String str) throws RemoteException;
+    public String message(String username,String str) throws RemoteException;
     public List<Message> getMessages() throws RemoteException;
     public void registerClient(ClientCallback client) throws RemoteException;
 
