@@ -6,6 +6,6 @@ import chat.shared.util.Subject;
 import java.util.List;
 
 public interface TextManager extends Subject {
-    String sendMessages(String str);
-    List<Messages> getMessages();
+    public String sendMessages(String str);
+    public List<Messages> getMessages();
 }

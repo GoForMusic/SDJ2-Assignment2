@@ -10,23 +10,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.ArrayList;
 
 public class SocketClient implements Client{
     private PropertyChangeSupport support;
 
     public SocketClient(){
-        support=new PropertyChangeSupport(this);
-        try{
-            Socket socket=new Socket("localhost", 2910);
-            ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
-
-            new Thread(()-> listenToServer(outToServer,inFromServer)).start();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+       support = new PropertyChangeSupport(this);
     }
 
     private void listenToServer(ObjectOutputStream outToServer, ObjectInputStream inFromServer) {
@@ -52,6 +42,30 @@ public class SocketClient implements Client{
         return str;
     }
 
+    @Override
+    public ArrayList<Messages> getMessages() {
+        try {
+            Request response = request(null, "FetchMessages");
+            return (ArrayList<Messages>) response.getArg();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void startClient() {
+        try {
+            Socket socket = new Socket("localhost", 2910);
+            ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
+
+            new Thread(() -> listenToServer(outToServer, inFromServer)).start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Override

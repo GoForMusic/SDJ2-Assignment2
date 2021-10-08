@@ -5,11 +5,10 @@ import chat.shared.transferoobjects.Messages;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TextManagerImp implements TextManager{
     private PropertyChangeSupport support;
-    private List<Messages> stringEntries;
+    private ArrayList<Messages> stringEntries;
 
     public TextManagerImp(){
         support=new PropertyChangeSupport(this);
@@ -19,15 +18,15 @@ public class TextManagerImp implements TextManager{
 
     @Override
     public String sendMessages(String str) {
-        String result = str.toUpperCase();
-        Messages textEntry = new Messages(str, result);
-        stringEntries.add(textEntry);
-        support.firePropertyChange("NewTextEntry", null, textEntry);
+        String result = str;
+        Messages logEntry = new Messages(str, result);
+        stringEntries.add(logEntry);
+        support.firePropertyChange("NewMessages", null, logEntry);
         return result;
     }
 
     @Override
-    public List<Messages> getMessages() {
+    public ArrayList<Messages> getMessages() {
         return new ArrayList<>(stringEntries);
     }
 
