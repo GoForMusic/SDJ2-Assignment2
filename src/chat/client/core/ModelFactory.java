@@ -1,25 +1,26 @@
-package chat.client.core;
+package chat.Client.core;
 
-import chat.client.model.MessageManager;
-import chat.client.model.MessageModel;
+import chat.Client.model.Chat;
+import chat.Client.model.ChatManager;
 
 public class ModelFactory {
-
-
     private final ClientFactory cf;
-    //ref to the interfaces in model
-    private MessageModel messageModel;
 
-    public ModelFactory(ClientFactory cf){
+    //Add model interface
+    private Chat chat;
+
+    public ModelFactory(ClientFactory cf)
+    {
         this.cf=cf;
     }
 
-    //return model interface
-    public MessageModel getMessageModel() {
-        if(messageModel == null)
+    //return model manager
+    public Chat getChat()
+    {
+        if(chat==null)
         {
-            messageModel=new MessageManager(cf.getClient());
+            chat=new ChatManager(cf.getClient());
         }
-        return messageModel;
+        return chat;
     }
 }

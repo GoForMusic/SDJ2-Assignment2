@@ -1,6 +1,6 @@
-package chat.client.core;
+package chat.Client.core;
 
-import chat.client.views.ViewController;
+import chat.Client.views.ViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,78 +9,47 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ViewHandler {
+    private Stage stage;
     private ViewModelFactory vmf;
-    private Stage mainStage;
 
-    //specific scenes
-    private Scene loginScene;
+
     private Scene chatScene;
-    private Scene friendListScene;
 
-    //open the first scene
-    public void start()
-    {
-        mainStage = new Stage();
-        openLoginScene();
-    }
 
-    public ViewHandler(ViewModelFactory vmf)
-    {
+    public ViewHandler(ViewModelFactory vmf) {
         this.vmf = vmf;
-
     }
 
-    //Add open method for specific scene
-    public void openLoginScene()  {
+    public void start() {
+        stage = new Stage();
+        openChatScene();
+    }
 
-        try {
-            loginScene= getScene("../views/login/Login.fxml");
+    //not
+    public void openChatScene() {
+        if (chatScene == null) {
+            try {
+                Parent root = loadFXML("../views/chat/Chat.fxml");
 
-        } catch (IOException e) {
-            e.printStackTrace();
+                stage.setTitle("Chat");
+                chatScene = new Scene(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
-        mainStage.setTitle("Login");
-        mainStage.setScene(loginScene);
-        mainStage.show();
-
+        stage.setScene(chatScene);
+        stage.show();
     }
-    public void openChatScene()  {
 
-        try {
-            loginScene= getScene("../views/chat/Chat.fxml");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        mainStage.setTitle("Chat");
-        mainStage.setScene(loginScene);
-        mainStage.show();
-
-    }
-    public void openFriendListScene()  {
-
-        try {
-            loginScene= getScene("../views/friendlist/FriendList.fxml");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        mainStage.setTitle("Friend List");
-        mainStage.setScene(loginScene);
-        mainStage.show();
-
-    }
-//===
-
-    private Scene getScene(String path) throws IOException{
+    private Parent loadFXML(String path) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(path));
         Parent root = loader.load();
-        ViewController view = loader.getController();
-        view.init(this, vmf);
-        return new Scene(root);
+
+        ViewController ctrl = loader.getController();
+        ctrl.init(this, vmf);
+        return root;
     }
 }

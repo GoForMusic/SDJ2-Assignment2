@@ -1,33 +1,34 @@
-package chat.server.model;
+package chat.Server.model;
 
-import chat.shared.transferoobjects.Messages;
+import chat.Share.transferobjects.Message;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.List;
 
-public class TextManagerImp implements TextManager{
+public class ChatImpl implements Chat{
     private PropertyChangeSupport support;
-    private ArrayList<Messages> stringEntries;
+    private List<Message> messages;
 
-    public TextManagerImp(){
+    public ChatImpl()
+    {
         support=new PropertyChangeSupport(this);
-        stringEntries=new ArrayList<>();
+        messages=new ArrayList<>();
     }
 
-
     @Override
-    public String sendMessages(String str) {
-        String result = str;
-        Messages logEntry = new Messages(str, result);
-        stringEntries.add(logEntry);
-        support.firePropertyChange("NewMessages", null, logEntry);
+    public String sendMessage(String str) {
+        String result = str.toUpperCase();
+        Message logEntry = new Message(str, result);
+        messages.add(logEntry);
+        support.firePropertyChange("NewMessageEntry", null, logEntry);
         return result;
     }
 
     @Override
-    public ArrayList<Messages> getMessages() {
-        return new ArrayList<>(stringEntries);
+    public List<Message> getMessage() {
+        return new ArrayList<>(messages);
     }
 
     @Override

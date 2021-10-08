@@ -1,15 +1,14 @@
-package chat.client.core;
+package chat.Client.core;
 
-import chat.client.networking.Client;
-import chat.client.networking.SocketClient;
+import chat.Client.network.Client;
+import chat.Client.network.RMIClient;
 
 public class ClientFactory {
     private Client client;
 
     public Client getClient(){
-        if(client == null)
-        {
-            client=new SocketClient();
+        if(client==null){
+            client=new RMIClient();
         }
         return client;
     }

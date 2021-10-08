@@ -1,34 +1,23 @@
-package chat.client.core;
+package chat.Client.core;
 
-import chat.client.views.chat.ChatController;
-import chat.client.views.chat.ChatVM;
-import chat.client.views.login.LoginVM;
+
+import chat.Client.views.chat.ChatViewModel;
 
 public class ViewModelFactory {
+    private final ModelFactory mf;
+    //add VM
+    private ChatViewModel chatViewModel;
 
-    private final ModelFactory modelFactory;
-
-    //add vm
-    private LoginVM loginVM;
-    private ChatVM chatVM;
-
-    public ViewModelFactory(ModelFactory mf){
-        modelFactory=mf;
-    }
-    //return the specific view model
-
-
-    public LoginVM getLoginVM() {
-        if(loginVM ==null){
-            loginVM=new LoginVM();
-        }
-        return loginVM;
+    public ViewModelFactory(ModelFactory mf) {
+        this.mf = mf;
     }
 
-    public ChatVM getChatVM(){
-        if(chatVM==null){
-            chatVM=new ChatVM();
+    //return VMS
+    public ChatViewModel getChatViewModel(){
+        if(chatViewModel == null)
+        {
+            chatViewModel=new ChatViewModel(mf.getChat());
         }
-        return chatVM;
+        return chatViewModel;
     }
 }

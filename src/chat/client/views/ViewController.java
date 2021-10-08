@@ -1,8 +1,8 @@
-package chat.client.views;
+package chat.Client.views;
 
-import chat.client.core.ViewHandler;
-import chat.client.core.ViewModelFactory;
+import chat.Client.core.ViewHandler;
+import chat.Client.core.ViewModelFactory;
 
 public interface ViewController {
-    public void init(ViewHandler vh, ViewModelFactory vfm);
+    void init(ViewHandler vh, ViewModelFactory vmf);
 }

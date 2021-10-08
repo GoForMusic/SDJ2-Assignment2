@@ -1,4 +1,4 @@
-package chat.shared.util;
+package chat.Share.util;
 
 import java.beans.PropertyChangeListener;
 

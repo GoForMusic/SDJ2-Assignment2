@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.client.views.chat.ChatController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.Client.views.chat.ChatViewController">
    <children>
-      <ListView fx:id="textRead" layoutX="29.0" layoutY="23.0" prefHeight="293.0" prefWidth="540.0" />
-      <TextField fx:id="textInput" layoutX="29.0" layoutY="335.0" prefHeight="25.0" prefWidth="478.0" />
-      <Button layoutX="517.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#sendMessage" text="Send" />
+      <ListView fx:id="chatView" layoutX="41.0" layoutY="46.0" prefHeight="277.0" prefWidth="499.0" />
+      <TextField fx:id="textInputMessage" layoutX="41.0" layoutY="348.0" prefHeight="25.0" prefWidth="388.0" />
+      <Button layoutX="456.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#sendMessage" prefHeight="25.0" prefWidth="84.0" text="Send" />
    </children>
 </AnchorPane>
