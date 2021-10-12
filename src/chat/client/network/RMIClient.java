@@ -23,9 +23,10 @@ public class RMIClient implements Client, ClientCallback {
 
 
     @Override
-    public String message(String str) {
+    public String message(String username,String str) {
         try {
-            return server.message(str);
+            System.out.println("send to server");
+            return server.message(username,str);
         } catch (RemoteException e) {
             throw new RuntimeException("Could not contact server");
         }
@@ -34,6 +35,7 @@ public class RMIClient implements Client, ClientCallback {
     @Override
     public List<Message> getMessages() {
         try {
+            System.out.println("get info from server");
             return server.getMessages();
         } catch (RemoteException e) {
             throw new RuntimeException("Could not contact server");
@@ -62,7 +64,7 @@ public class RMIClient implements Client, ClientCallback {
 
     @Override
     public void update(Message message) throws RemoteException {
-        support.firePropertyChange("NewMessageEntry", null, message);
+        support.firePropertyChange("NewTextEntry", null, message);
     }
 
     @Override

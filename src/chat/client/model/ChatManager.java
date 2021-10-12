@@ -25,8 +25,8 @@ public class ChatManager implements Chat{
 
 
     @Override
-    public String sendMessage(String text) {
-        return client.message(text);
+    public String sendMessage(String username,String text) {
+        return client.message(username, text);
     }
 
     @Override

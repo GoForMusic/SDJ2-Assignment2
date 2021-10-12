@@ -24,7 +24,7 @@ public class ChatViewController implements ViewController {
     }
 
     public void sendMessage(MouseEvent mouseEvent) {
-        vm.sendMessage(textInputMessage.getText());
+        vm.sendMessage("test",textInputMessage.getText());
         textInputMessage.clear();
     }
 }

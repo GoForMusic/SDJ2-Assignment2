@@ -31,8 +31,8 @@ public class RMIServerImpl implements RMIServer {
     }
 
     @Override
-    public String message(String str) throws RemoteException {
-        return chat.sendMessage(str);
+    public String message(String username,String str) throws RemoteException {
+        return chat.sendMessage(username,str);
     }
 
     @Override

@@ -18,12 +18,11 @@ public class ChatImpl implements Chat{
     }
 
     @Override
-    public String sendMessage(String str) {
-        String result = str.toUpperCase();
-        Message logEntry = new Message(str, result);
+    public String sendMessage(String username,String str) {
+        Message logEntry = new Message(username, str);
         messages.add(logEntry);
-        support.firePropertyChange("NewMessageEntry", null, logEntry);
-        return result;
+        support.firePropertyChange("NewTextEntry", null, logEntry);
+        return str;
     }
 
     @Override

@@ -6,6 +6,6 @@ import chat.Share.util.Subject;
 import java.util.List;
 
 public interface Chat extends Subject {
-    String sendMessage(String str);
+    String sendMessage(String username,String str);
     List<Message> getMessage();
 }

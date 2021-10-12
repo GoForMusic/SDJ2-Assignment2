@@ -17,17 +17,17 @@ public class ChatViewModel {
     public ChatViewModel(Chat chat)
     {
         this.chat =chat;
-        loadMessages();
         chat.addListener("NewTextEntry", this::onNewMessageEntry);
+        loadMessages();
     }
 
     public void onNewMessageEntry(PropertyChangeEvent  evt){
         messages.add((Message) evt.getNewValue());
     }
 
-    public void sendMessage(String message)
+    public void sendMessage(String username,String message)
     {
-        chat.sendMessage(message);
+        chat.sendMessage(username,message);
     }
 
     public void loadMessages(){
